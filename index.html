@@ -1,0 +1,206 @@
+نهال:
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>هدیه‌ای برای نازی جون</title>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;500;700;900&display=swap');
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  font-family: 'Vazirmatn', sans-serif;
+  background: #fff4e8;
+  color: #754c43;
+  text-align: center;
+  overflow-x: hidden;
+}
+
+.page {
+  min-height: 100vh;
+  display: none;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  padding: 25px;
+}
+
+.page.active { display: flex; }
+
+h1 { color: #bd6875; font-size: 30px; }
+p { line-height: 2.2; font-size: 17px; }
+
+button {
+  font-family: inherit;
+  cursor: pointer;
+  border: none;
+  border-radius: 25px;
+  padding: 15px 28px;
+  background: #d98291;
+  color: white;
+  font-size: 17px;
+  margin: 10px;
+  box-shadow: 0 5px 12px #d9a7a0;
+  transition: .2s;
+}
+
+button:hover { transform: scale(1.06); }
+
+.gift {
+  font-size: 90px;
+  cursor: pointer;
+  animation: bounce 1.5s infinite;
+}
+
+@keyframes bounce {
+  50% { transform: translateY(-13px); }
+}
+
+.options {
+  display: flex;
+  flex-direction: column;
+  width: min(100%, 330px);
+  margin-top: 20px;
+}
+
+.options button {
+  background: #fff;
+  color: #ad6470;
+  border: 2px solid #e8b7ad;
+  padding: 18px;
+}
+
+.card {
+  background: #fffaf4;
+  border: 2px solid #e9c4b5;
+  border-radius: 28px;
+  padding: 28px;
+  max-width: 550px;
+  width: 100%;
+  box-shadow: 0 8px 25px #e9c9b8;
+}
+
+.balloon, .strawberry {
+  position: fixed;
+  top: -60px;
+  z-index: 10;
+  pointer-events: none;
+  animation: fall linear forwards;
+}
+
+@keyframes fall {
+  to { transform: translateY(115vh) rotate(360deg); }
+}
+
+.small { font-size: 14px; color: #b68a7d; }
+</style>
+</head>
+
+<body>
+
+<section id="home" class="page active">
+  <h1>یه هدیه کوچیک...</h1>
+  <p>برای یکی از دوست‌داشتنی‌ترین آدم‌های دنیا 🩷</p>
+  <div class="gift" onclick="start()">🎁</div>
+  <p class="small">برای باز کردن هدیه کلیک کن</p>
+</section>
+
+<section id="menu" class="page">
+  <h1>نازی جوووون! 🎈</h1>
+  <p>خب حالا بریم سراغ شناخت بیشتر شما! 😂</p>
+
+  <div class="options">
+    <button onclick="showPage('one')">نازی جون کیست؟</button>
+    <button onclick="showPage('two')">نازی جون به چی معروفه؟</button>
+    <button onclick="showPage('three')">سوپرایز 🍓</button>
+  </div>
+</section>
+
+<section id="one" class="page">
+  <div class="card">
+    <h1>نازی جون کیست؟ 🩷</h1>
+    <p>
+      نازی جون یه آدم باحال، البته چه عرض کنم،
+      شبیه فرشته‌هاست! 😍
+      <br>
+      مهربون، دوست‌داشتنی و کلی ویژگی دیگه
+      که تو اینجا جا نمیشه...
+      <br>
+      (البته تو هیجا! 😂)
+    </p>
+    <button onclick="showPage('menu')">بازگشت</button>
+  </div>
+</section>
+
+<section id="two" class="page">
+  <div class="card">
+    <h1>نازی جون به چی معروفه؟ 😂</h1>
+    <p>
+      نازی جون به دست‌ودل‌بازی (بازی مار و پله نه‌ها 😂)
+      <br>
+      به مهربونیششششش 🩷
+      <br>
+      به زیبایی مادرزادیش (اگه غلط املایی دارم ببخشید 😁)
+      <br>
+      به باحالیش!
+      <br>
+      نازی جون خداوکیلی بین فامیلا از همه باحال‌ترییی
+      و بین شما و فامیلای دیگه صددرصد شما رو انتخاب می‌کنم!
+      <br>
+      و کلیییی چیز دیگه...
+    </p>
+    <button onclick="showPage('menu')">بازگشت</button>
+  </div>
+</section>
+
+<section id="three" class="page">
+  <div class="card">
+    <h1>🍓🍓🍓</h1>
+    <p id="surpriseText" style="display:none; font-size:23px; font-weight:900; color:#bd6875;">
+      تولدت مبارک زیباترین، مهربون‌ترین،
+      باحال‌ترین... آدم رو جهاننننن! 🎂🩷
+    </p>
+    <button id="surpriseButton" onclick="strawberries()">
+      سورپرایز اصلی 🍓
+    </button>
+    <button onclick="showPage('menu')">بازگشت</button>
+  </div>
+</section>
+
+<script>
+function showPage(id) {
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+}function rain(symbol, count, className) {
+  for(let i=0; i<count; i++) {
+    const item = document.createElement('div');
+    item.className = className;
+    item.textContent = symbol;
+    item.style.left = Math.random()*100 + 'vw';
+    item.style.animationDuration = (2 + Math.random()*3) + 's';
+    item.style.fontSize = (25 + Math.random()*30) + 'px';
+    document.body.appendChild(item);
+    setTimeout(() => item.remove(), 5500);
+  }
+}
+
+function start() {
+  rain('🎈', 65, 'balloon');
+  setTimeout(() => showPage('menu'), 1100);
+}
+
+function strawberries() {
+  rain('🍓', 75, 'strawberry');
+  document.getElementById('surpriseButton').style.display = 'none';
+  setTimeout(() => {
+    document.getElementById('surpriseText').style.display = 'block';
+  }, 1800);
+}
+</script>
+
+</body>
+</html>
